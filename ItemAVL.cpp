@@ -142,7 +142,7 @@ ItemAVL<Comparator>::~ItemAVL()
 template <class Comparator>
 bool ItemAVL<Comparator>::contains(const std::string& target) const
 {
-    // Your code here
+    return contains(target, root_);
 }
 
 /**
@@ -154,8 +154,16 @@ bool ItemAVL<Comparator>::contains(const std::string& target) const
  */
 template <class Comparator>
 bool ItemAVL<Comparator>::contains(const std::string& target, const Node* subroot) const
-{
-    // Your code here.
+{   
+    //if there is no subroot return false
+    if (subroot == nullptr) {
+        return false;
+    }
+    //of the name matches then return true
+    if (subroot->value_.name_ == target) {
+        return true;
+    }
+    return contains(target, subroot->left_) || contains(target, subroot->right_);
 }
 
 /**
