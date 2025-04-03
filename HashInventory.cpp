@@ -143,17 +143,16 @@ bool Inventory<Comparator, std::unordered_set<Item>>::discard(const std::string&
 template <class Comparator>
 bool Inventory<Comparator, std::unordered_set<Item>>::contains(const std::string& itemName) const
 {
-    for(auto it = items_.begin(); it != items_.end(); ++it) 
-    {
-        //if the iterator name equals the itemName we are searching for return true
-        if (it->name_ == itemName) 
-        {
-            return true;
-        }
+    //create use find on the unordered set and use and return the iterator to the return 
+    //Return: An iterator to the element, if val is found, or set::end otherwise.
+    std::unordered_set<Item> mySet;
+    auto it = items_.find(itemName);
+    if(it == items_.end())
+    { 
+        return false;
     }
-    return false;
+    return true;
 }
-
 /**
  * @brief Queries the inventory for items within a specified range.
  *
